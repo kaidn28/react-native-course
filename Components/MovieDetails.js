@@ -1,8 +1,15 @@
 import React from 'react'
-import {Text} from 'react-native'
+import {Text, View} from 'react-native'
 
-const MovieDetails  = () => {
-    return <Text> Movie Details</Text>
+class MovieDetails extends React.Component {
+    render(){
+        return (
+            <View>
+                <Text> Movie Details </Text>
+                
+            </View>
+        )
+    } 
 }
 
 export default MovieDetails
