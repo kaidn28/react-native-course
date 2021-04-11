@@ -6,7 +6,6 @@ class MovieDetails extends React.Component {
         return (
             <View>
                 <Text> Movie Details </Text>
-                
             </View>
         )
     } 

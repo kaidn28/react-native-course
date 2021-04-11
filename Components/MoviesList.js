@@ -1,41 +1,32 @@
 import React from 'react'
 import {Text, Button, View} from 'react-native'
+import { FlatList } from 'react-native-gesture-handler'
+import {ScrollView} from 'react-native'
 import Row from './Row'
+import PropTypes from 'prop-types'
+import { render } from 'react-dom'
 
-class MoviesList extends React.Component {
-    state = {
-        name: null,
-        id: null,
-        show_result: false
-    }
-    componentDidMount(){
-        if (this.state.name === null){
-            this.setState({show_result: false})
-        }
-        else {
-            this.setState({show_result: true})
-        }
-    }
+const renderItem = obj => <Row {...obj.item} />
 
-
-
-    render(){
-        if (!this.state.show_result) {
-            return (
-                <View>
-                    <Text> Press Search to search for movies</Text>
-                    <Button title="Search" onPress={(props)=> this.props.navigation.navigate("MoviesSearch")} />
-                </View>
-            )
-        }
-        const row = {name: "name", year: "year", rated:"rated"}
+const MoviesList = props => {
+    //console.log(props.movies)
+    return(
+        <View>
+            <FlatList 
+                data ={props.movies}
+                renderItem={renderItem}
+                    keyExtractor={item => item.title}
+            />
+        </View>
+    )
+}
+    
+     
         
-        return (
-            <View>       
-                <Row {...row}/>       
-            </View>
-        )
-    } 
+    
+
+MoviesList.propTypes ={
+    movies: PropTypes.array
 }
 
 export default MoviesList
