@@ -7,13 +7,12 @@ import PropTypes from 'prop-types'
 
 
 const MoviesList = props => {
-    renderItem = obj => <Row {...obj.item}/>
+    renderItem = obj => <Row {...obj.item} seeDetails={props.seeDetails}/>
     return (
         <FlatList 
             data ={props.movies}
             renderItem={this.renderItem}
-            keyExtractor={item => item.imdbID}
-        
+            keyExtractor={(item, index) => (index + item.imdbID)}
         /> 
     )
 }

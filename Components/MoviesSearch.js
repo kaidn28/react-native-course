@@ -25,10 +25,7 @@ class MoviesSearch extends React.Component {
             const name_query = this.state.name.replace(" ", "+")
             axios.get(this.state.url + "?s="+ name_query + "&apikey=" + this.state.apikey)
             .then(res =>{
-                axios.get(this.state.url+ "?s="+ name_query + "&page="+ "2"+  "&apikey=" + this.state.apikey)
-                .then(res2 => {
-                    this.props.navigation.push('Main', { movies: res.data.Search.concat(res2.data.Search) })
-                })
+                this.props.navigation.push('Main', { movies: res.data.Search }) 
                 
                 //console.log("res data")
                 //console.log(res.data.Search)
