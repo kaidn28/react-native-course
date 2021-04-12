@@ -15,6 +15,7 @@ function StackNavInit(){
               name="Main" 
               component={Main} 
               options= {{title: "Movies List"}}
+              initialParams={{movies: []}}
             />
             <StackNav.Screen 
               name="MoviesSearch" 

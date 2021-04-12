@@ -8,9 +8,9 @@ import StackNavInit from './Navigators/MainNavigator'
 
 export default function App() {
     return (
-      <NavigationContainer>
-        <StackNavInit/>
-      </NavigationContainer>
+        <NavigationContainer>
+          <StackNavInit/>
+        </NavigationContainer>
     );
 
 }

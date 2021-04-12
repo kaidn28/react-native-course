@@ -5,26 +5,33 @@ import axios from 'axios'
 class MoviesSearch extends React.Component {
     state ={
         name: null,
-        movies: [],
         url: "http://www.omdbapi.com/",
-        apikey: "40deacca"
+        apikey: "40deacca",
+        number_of_result: 10
 
     }
     changeText = (text)=> {
         this.setState({ name: text})
     }
 
-    search = (navigation) =>{
+    search = () =>{
         if(this.state.name === null){
             alert("insert movie name you would like to search for")
         }
         else{
+            for(let i = 0; i < this.state.number_of_result%10; i++){
+
+            }
             const name_query = this.state.name.replace(" ", "+")
             axios.get(this.state.url + "?s="+ name_query + "&apikey=" + this.state.apikey)
             .then(res =>{
-                this.setState({movies: res.data})
-                navigation.navigate('MoviesList', { params: {movies} })
+                axios.get(this.state.url+ "?s="+ name_query + "&page="+ "2"+  "&apikey=" + this.state.apikey)
+                .then(res2 => {
+                    this.props.navigation.push('Main', { movies: res.data.Search.concat(res2.data.Search) })
+                })
                 
+                //console.log("res data")
+                //console.log(res.data.Search)
             })
             .catch(err => { console.log(err)})
 
@@ -38,10 +45,9 @@ class MoviesSearch extends React.Component {
                 <TextInput placeholder="movie name"
                 onChangeText={text => this.changeText(text)}></TextInput>
                 <Button title="Search Movie"
-                onPress={() => this.search()}></Button>
+                onPress={this.search}></Button>
             </View>
         )
     } 
 }
-
 export default MoviesSearch
