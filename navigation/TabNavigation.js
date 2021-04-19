@@ -1,47 +1,65 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ListScreen from '../components/list/ListScreen'
-import SearchScreen from '../components/search/SearchScreen'
-import AddScreen from '../components/add/AddScreen'
-import DetailsScreen from '../components/details/DetailsScreen'
-import LoginScreen from '../components/login/LoginScreen'
+import AssignmentsScreen from '../components/assignments/AssignmentsScreen'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 const TabNav = createBottomTabNavigator();
 
-function TabNavInit(){
-    const isLoggedIn = true;
+function TabNavInit(props){
+    console.log(props.route.params.id)
     return (
         <TabNav.Navigator
-            initialRouteName="List"
+            initialRouteName="Assignments"
         >
-            {isLoggedIn? (
-                <> 
-                <TabNav.Screen 
-                    name="List" 
-                    component={ListScreen} 
-                    options= {{title: "List"}}
-                />
-                <TabNav.Screen 
-                    name="Search" 
-                    component={SearchScreen} 
-                    options={{ title : "Search"}}
-                />
-                <TabNav.Screen 
-                    name="Details" 
-                    component={DetailsScreen} 
-                    options={{ title: "Details" }}
-                />
-                <TabNav.Screen
-                    name="Add"
-                    component={AddScreen}
-                    options={{title: "Add"}}
-                />
-                </>
-            ) : (
-                <TabNav.Screen 
-                    name="Login"
-                    component={LoginScreen} />
-            )
-        }
+            <TabNav.Screen 
+                name="Assignments" 
+                component={AssignmentsScreen} 
+                options= {{
+                    title: "Assignments",
+                    headerRight: "bla",
+                    tabBarIcon: ({focused, tintColor}) => {
+                        if(focused){
+                            return <Ionicons 
+                            name='book-outline'
+                            size={20} 
+                            color='blue'/>
+                            
+                        }
+                        else {
+                            return <Ionicons 
+                            name='book-outline'
+                            size={20} 
+                            color='black'
+                        />
+                        }
+                    }
+
+                    
+                }}
+            />
+            <TabNav.Screen 
+                name="Students" 
+                component={ListScreen} 
+                options= {{
+                    title: "Students",
+                    tabBarIcon: ({focused, tintColor}) => {
+                        if(focused){
+                            return <Ionicons 
+                            name='list-outline'
+                            size={20} 
+                            color='blue'/>
+                            
+                        }
+                        else {
+                            return <Ionicons 
+                            name='list-outline'
+                            size={20} 
+                            color='black'
+                        />
+                        }
+                    } 
+                }}
+            />
             
         </TabNav.Navigator>
     )

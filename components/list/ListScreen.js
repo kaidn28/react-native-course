@@ -1,9 +1,14 @@
 import React from 'react'
 import { Text, View} from 'react-native'
-import Store from '../../store/store'
+import store from '../../store/store'
+import List from './List'
+const ListScreen = (props) =>{
+    //console.log(props)
+    return (
+    <View>
+        <List/>
+    </View>)
 
-function ListScreen(){
-    return <Text> {store.getState().value} </Text>
 }
 
 export default ListScreen

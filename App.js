@@ -3,13 +3,16 @@ import React from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
 import StackNavInit from './navigation/StackNavigation'
 import {NavigationContainer} from '@react-navigation/native'
+import { Provider } from 'react-redux'
+import store from './store/store'
 export default function App() {
-  const checkLogin = () => {console.log("hello")}
-
   return (
-    <NavigationContainer>
-      <StackNavInit/>
-    </NavigationContainer>
+    <Provider store ={store}>
+      <NavigationContainer>
+        <StackNavInit/>
+      </NavigationContainer>
+    </Provider>
+
   );
 }
 
