@@ -38,7 +38,7 @@ function TabNavInit({route, navigation}){
             >
                 {()=> 
                 <AssignmentsStackNavInit 
-                    {...route.params}
+                    {...route.params} navigation={navigation}
                 />}
             </TabNav.Screen>
             <TabNav.Screen 
@@ -64,7 +64,7 @@ function TabNavInit({route, navigation}){
                 }}
             >
                 {() =><StudentsStackNavInit 
-                    {...route.params}
+                    {...route.params} navigation={navigation}
                 />}
             </TabNav.Screen>
             

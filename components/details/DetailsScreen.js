@@ -4,7 +4,7 @@ import { ScrollView, Image, Text, View, FlatList} from 'react-native'
 function DetailsScreen(props){
     //console.log(props)
     const details = props.route.params;
-    const listScore= details.scores.map((number, index)=><Text>Assignment {index+1}: {number}</Text>)
+    const listScore= details.scores.map((number, index)=><Text key={index}>Assignment {index+1}: {number}</Text>)
     return (
         <ScrollView>
             <Text> {details.name.first + ' ' + details.name.last} </Text>

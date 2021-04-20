@@ -7,7 +7,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 const AssignmentsStackNav = createStackNavigator();
 
 function AssignmentsStackNavInit(props){
-    //console.log(props)
+    console.log(props)
     return (
         <AssignmentsStackNav.Navigator
             initialRouteName="Assignments"

@@ -1,5 +1,5 @@
 import React from 'react'
-import {Text, StyleSheet, TouchableOpacity} from 'react-native'
+import {Text, StyleSheet, TouchableOpacity, View} from 'react-native'
 import {useNavigation} from '@react-navigation/native'
 const Row = (props) => {
     //console.log(props.picture.thumbnail)
@@ -10,7 +10,9 @@ const Row = (props) => {
     //console.log(props)
     return (
         <TouchableOpacity style={styles.row} onPress={getClassDetails}>
-            <Text> Subject: {props.title} </Text>
+            <View style={styles.header}>
+                <Text style={{fontSize: 17, fontStyle: 'italic'}}> Subject: {props.title} </Text>
+            </View>
             <Text> ID: {props.id}</Text>
             <Text> Schedule: {props.schedule.weekday + ' tiết' + props.schedule.time}</Text>
         </TouchableOpacity>
@@ -20,9 +22,15 @@ const Row = (props) => {
 }
 const styles = StyleSheet.create({
     row: {
+        margin: 10,
         marginTop: 5,
-        marginLeft: 5
+        borderWidth: 1,
+        padding:10,
     },
+    header:{
+        borderBottomWidth: 1,
+        borderBottomColor: 'grey'
+    }
 })
 
 
