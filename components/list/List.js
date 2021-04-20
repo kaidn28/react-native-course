@@ -20,11 +20,29 @@ class List extends React.Component {
         var queryString = url+ '?' + 'results=' + results + '&nat=' + nat + '&inc='+ inc;
     
         axios.get(queryString)
-        .then(res => {
-            var elist = res.data.results;
+        .then(res1 => {
+            var elist = res1.data.results;
             //console.log(elist)
             elist.sort(compare);
+            //console.log(elist)
+            nass = this.props.nass
+            //console.log(nass)
+            for(var e =0; e < elist.length;e++){
+                var scores = [];
+                var sum = 0;
+                for(let i =0; i< nass; i++) {
+                    
+                    var score = (Math.floor(Math.random()*12)+8)/2;
+                    sum += score
+                    scores.push(score);
+                }
+                var mean_score = Math.round(10*sum/(scores.length))/10;
+                elist[e].scores = scores;
+                elist[e].mean_score = mean_score
+            }
+            //console.log(elist)
             this.setState({students: elist})
+
         })
         .catch(err => console.log(err));    
     }

@@ -15,6 +15,7 @@ class ClassesList extends React.Component {
             var classes = []
             for(let i in data){
                 data[i].keyID= i
+                data[i].nass= Object.keys(data[i].assignments).length
                 classes.push(data[i])
             }
             this.setState({classes})
@@ -30,7 +31,7 @@ class ClassesList extends React.Component {
             this.state.classes !== null ?
             <FlatList
             data={this.state.classes}
-            renderItem={obj => <Row {...obj.item} getClassDetails={this.props.getClassDetails}/>}
+            renderItem={obj => <Row {...obj.item} />}
             keyExtractor={(item, index) => item.id + index}
         />
         : <Text> Loading...</Text>

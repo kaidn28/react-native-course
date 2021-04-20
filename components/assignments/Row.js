@@ -9,7 +9,7 @@ const Row = (props) => {
     return (
         <View style={styles.row} >
             <View>
-                <Text> Assignment {props.index} : {props.title} </Text>
+                <Text> Assignment {props.index+1} : {props.title} </Text>
                 <Text> Description: {props.description}</Text>
             </View>
             <TouchableOpacity onPress={onDelete} style={styles.trash}>

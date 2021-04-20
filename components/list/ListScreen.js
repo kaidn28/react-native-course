@@ -6,7 +6,7 @@ const ListScreen = (props) =>{
     //console.log(props)
     return (
     <View>
-        <List/>
+        <List nass={props.nass}/>
     </View>)
 
 }

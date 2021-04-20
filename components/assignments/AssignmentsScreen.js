@@ -8,12 +8,8 @@ class AssignmentsScreen extends React.Component{
         classKey: null
     }
     componentDidMount(){
-        //obj = {assignments: this.state.assignments}
-        //console.log(this.props.route.params)
-        //console.log(124)
-        //console.log(this.props.route.params.classKey)
-        if(typeof this.props.route.params.classKey !== 'undefined'){
-            classKey = this.props.route.params.classKey
+        if(typeof this.props.classKey !== 'undefined'){
+            classKey = this.props.classKey
             axios.get('https://react-native-course-35244-default-rtdb.firebaseio.com/classes/' + classKey + '/assignments.json')
             .then(res =>{
                 var data = res.data
@@ -30,12 +26,15 @@ class AssignmentsScreen extends React.Component{
 
     }
     onDelete = ({index, assignmentKey}) => {
+        //console.log(index, assignmentKey)
         this.setState(({assignments}) => {
-            var ass = assignments.splice(index,1)
+            //console.log(assignments)
+            var ass = assignments
+            ass.splice(index,1)
+            //console.log(ass)
             return {assignments: ass}
         })
-        axios.delete('https://react-native-course-35244-default-rtdb.firebaseio.com/classes/' + this.state.classKey + '/assignments/' + assignmentKey+'.json')
-        
+        axios.delete('https://react-native-course-35244-default-rtdb.firebaseio.com/classes/' + this.state.classKey + '/assignments/' + assignmentKey+'.json')    
     }
     render(){
         //console.log(this.state.classKey)
@@ -43,7 +42,7 @@ class AssignmentsScreen extends React.Component{
         return this.state.assignments !== null? 
                 <FlatList
                     data={this.state.assignments}
-                    renderItem={({item,index}) => <Row {...item} index={index+1} onDelete={this.onDelete}/>}
+                    renderItem={({item,index}) => <Row {...item} index={index} onDelete={this.onDelete}/>}
                     keyExtractor={(item, index) => (index + item.title)}
                 />
                 : <Text> Loading...</Text>

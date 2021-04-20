@@ -6,14 +6,9 @@ import ClassesList from './ClassesList'
 
 function ClassesListScreen(props){
 
-    const getClassDetails = obj => {
-        //console.log('id')
-        //console.log(obj);
-        props.navigation.navigate('TabNav', {screen: 'AssignmentsStackNav', params:{screen: 'Assignments', params: {classKey: obj.keyID, headerName: obj.title}}})
-    }
     return (
     <View>
-        <ClassesList getClassDetails={getClassDetails}/>
+        <ClassesList/>
     </View>)
 
 }

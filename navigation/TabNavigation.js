@@ -5,7 +5,8 @@ import AssignmentsStackNavInit from './AssignmentsStackNav'
 import StudentsStackNavInit from './StudentsStackNav'
 const TabNav = createBottomTabNavigator();
 
-function TabNavInit(props){
+function TabNavInit({route, navigation}){
+    //console.log(route.params)
     //console.log(props.route.params.id)
     return (
         <TabNav.Navigator
@@ -13,7 +14,6 @@ function TabNavInit(props){
         >
             <TabNav.Screen 
                 name="AssignmentsStackNav" 
-                component={AssignmentsStackNavInit} 
                 options= {{
                     title: "Assignments",
                     tabBarIcon: ({focused, tintColor}) => {
@@ -35,10 +35,14 @@ function TabNavInit(props){
 
                     
                 }}
-            />
+            >
+                {()=> 
+                <AssignmentsStackNavInit 
+                    {...route.params}
+                />}
+            </TabNav.Screen>
             <TabNav.Screen 
                 name="Students" 
-                component={StudentsStackNavInit} 
                 options= {{
                     title: "Students",
                     tabBarIcon: ({focused, tintColor}) => {
@@ -54,11 +58,15 @@ function TabNavInit(props){
                             name='list-outline'
                             size={20} 
                             color='black'
-                        />
+                            />
                         }
                     } 
                 }}
-            />
+            >
+                {() =><StudentsStackNavInit 
+                    {...route.params}
+                />}
+            </TabNav.Screen>
             
         </TabNav.Navigator>
     )

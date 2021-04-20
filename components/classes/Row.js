@@ -1,10 +1,11 @@
 import React from 'react'
 import {Text, StyleSheet, TouchableOpacity} from 'react-native'
-
+import {useNavigation} from '@react-navigation/native'
 const Row = (props) => {
     //console.log(props.picture.thumbnail)
+    const navigation = useNavigation();
     const getClassDetails = () => {
-        props.getClassDetails(props);
+        navigation.navigate('TabNav', {classKey:props.keyID, headerName: props.title, nass:props.nass})
     }
     //console.log(props)
     return (

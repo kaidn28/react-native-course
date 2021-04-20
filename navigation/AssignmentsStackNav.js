@@ -2,27 +2,25 @@ import React from 'react'
 import { createStackNavigator, HeaderBackButton, Button } from '@react-navigation/stack';
 import AddScreen from '../components/add/AddScreen';
 import AssignmentsScreen from '../components/assignments/AssignmentsScreen'
-import ClassesListScreen from '../components/classes/ClassesListScreen'
 import {TouchableOpacity} from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 const AssignmentsStackNav = createStackNavigator();
 
-function AssignmentsStackNavInit(){
-
+function AssignmentsStackNavInit(props){
+    //console.log(props)
     return (
         <AssignmentsStackNav.Navigator
-            initialRouteName="Assigments"
+            initialRouteName="Assignments"
         >
-            <AssignmentsStackNav.Screen
+            <AssignmentsStackNav.Screen 
                 name="Assignments"
-                component={AssignmentsScreen}
-                options={({navigation,route})=>({
-                    title: route.params.headerName,
+                options={()=>({
+                    title: props.headerName,
                     headerRight: () => (
                         <TouchableOpacity onPress={()=>
                             {
                                 //console.log(route.params.classKey)
-                                navigation.navigate('Add', {classKey:route.params.classKey})}
+                                props.navigation.navigate('Add')}
                             }>
                             <Ionicons
                                 name='add-outline'
@@ -30,14 +28,25 @@ function AssignmentsStackNavInit(){
                                 style={{paddingRight: 10}}
                             />
                         </TouchableOpacity>),
-                    headerLeft: ()=> (<HeaderBackButton onPress={()=> navigation.navigate('Classes')}/>)
+                    headerLeft: ()=> (<HeaderBackButton onPress={()=> props.navigation.navigate('Classes')}/>)
                 })}
-            />
+            >
+                {() =>
+                <AssignmentsScreen 
+                    headerName={props.headerName} 
+                    classKey={props.classKey}
+                />}
+            </AssignmentsStackNav.Screen>
             <AssignmentsStackNav.Screen
                 name="Add"
-                component={AddScreen}
                 options={{title:"Add Assignment"}}
-            />
+            >
+            {
+            ()=> <AddScreen 
+                classKey={props.classKey}
+                navigation={props.navigation}
+                />}
+            </AssignmentsStackNav.Screen>
         </AssignmentsStackNav.Navigator>
     )
 }
