@@ -6,6 +6,7 @@ const Row = (props) => {
     const getClassDetails = () => {
         props.getClassDetails(props);
     }
+    //console.log(props)
     return (
         <TouchableOpacity style={styles.row} onPress={getClassDetails}>
             <Text> Subject: {props.title} </Text>

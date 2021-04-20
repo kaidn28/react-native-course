@@ -1,22 +1,21 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import ListScreen from '../components/list/ListScreen'
-import AssignmentsScreen from '../components/assignments/AssignmentsScreen'
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import AssignmentsStackNavInit from './AssignmentsStackNav'
+import StudentsStackNavInit from './StudentsStackNav'
 const TabNav = createBottomTabNavigator();
 
 function TabNavInit(props){
-    console.log(props.route.params.id)
+    //console.log(props.route.params.id)
     return (
         <TabNav.Navigator
             initialRouteName="Assignments"
         >
             <TabNav.Screen 
-                name="Assignments" 
-                component={AssignmentsScreen} 
+                name="AssignmentsStackNav" 
+                component={AssignmentsStackNavInit} 
                 options= {{
                     title: "Assignments",
-                    headerRight: "bla",
                     tabBarIcon: ({focused, tintColor}) => {
                         if(focused){
                             return <Ionicons 
@@ -39,7 +38,7 @@ function TabNavInit(props){
             />
             <TabNav.Screen 
                 name="Students" 
-                component={ListScreen} 
+                component={StudentsStackNavInit} 
                 options= {{
                     title: "Students",
                     tabBarIcon: ({focused, tintColor}) => {

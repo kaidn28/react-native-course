@@ -6,12 +6,9 @@ import DetailsScreen from '../components/details/DetailsScreen';
 import AddScreen from '../components/add/AddScreen';
 import ClassesListScreen from '../components/classes/ClassesListScreen';
 import { useSelector } from 'react-redux'
-
-
-
 const StackNav = createStackNavigator();
 
-function StackNavInit(props){
+function StackNavInit(){
     const isLoggedIn = useSelector(state => state.isLoggedIn)
     return (
         <StackNav.Navigator
@@ -27,17 +24,12 @@ function StackNavInit(props){
                 <StackNav.Screen 
                     name="TabNav" 
                     component={TabNavInit}
-                    options={{title: "Class Details"}} 
+                    options={{headerShown: false}}
                 />
                 <StackNav.Screen 
                     name="Details" 
                     component={DetailsScreen} 
                     options={{ title: "Details" }}
-                />
-                <StackNav.Screen
-                    name="Add"
-                    component={AddScreen}
-                    options={{title: "Add Course"}}
                 />
                 </>
             ) : (

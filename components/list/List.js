@@ -32,7 +32,7 @@ class List extends React.Component {
         this.getData();
     }
     render(){
-        console.log(this.state.students)
+        //console.log(this.state.students)
         return (
             this.state.students !== null?
             <FlatList
