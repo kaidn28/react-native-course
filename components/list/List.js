@@ -3,6 +3,7 @@ import { FlatList, Text } from 'react-native'
 import axios from 'axios'
 import store from '../../store/store'
 import Row from './Row'
+import styles from '../../assets/styles'
 class List extends React.Component {
     state = {
         students: null
@@ -53,7 +54,7 @@ class List extends React.Component {
         //console.log(this.state.students)
         return (
             this.state.students !== null?
-            <FlatList
+            <FlatList style={styles.list}
             data={this.state.students}
             renderItem={obj => <Row {...obj.item}/>}
             keyExtractor={(item, index) => item.id + index}

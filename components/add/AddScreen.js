@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react'
 import { Text, View, TextInput, Button} from 'react-native'
+import addStyles from '../../assets/addStyles';
 
 function AddScreen(props){
     //console.log(props.route)
@@ -17,21 +18,29 @@ function AddScreen(props){
     }
     return (
         
-        <View>
-            <Text>Title: </Text>
-            <TextInput
-                placeholder="add title"
-                onChangeText={title => {setTitle(title)}}
-            />
-            <Text>Description: </Text>
-            <TextInput
-                placeholder="add description"
-                onChangeText={description => {setDescription(description)}}
-            />
-            <Button 
-                title='submit' 
-                onPress={submit}
-                disabled= {title === '' || description === ''}/>
+        <View style={addStyles.container}>
+            <View style={addStyles.smallContainer}>
+                <View style={addStyles.input}>
+                    <Text>Title: </Text>
+                    <TextInput style={addStyles.titleInput}
+                        placeholder="add title"
+                        onChangeText={title => {setTitle(title)}}
+                    />
+                    <Text>Description: </Text>
+                    <TextInput multiline numberOfLines={4} style={addStyles.descriptionInput}
+                        placeholder="add description"
+                        onChangeText={description => {setDescription(description)}}
+                    />
+                </View>
+                <View style={addStyles.button}>
+                    <Button
+                        title='submit' 
+                        onPress={submit}
+                        disabled= {title === '' || description === ''}/>
+                </View>
+                
+            </View>
+            
         </View>
     )
 }

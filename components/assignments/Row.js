@@ -1,16 +1,22 @@
 import React from 'react'
 import {Text, StyleSheet, View, TouchableOpacity} from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import styles from '../../assets/styles'
 const Row = (props) => {
     //console.log(props)
     const onDelete =() => {
         props.onDelete(props)
     }
     return (
-        <View style={styles.row} >
+        <View style={{...styles.row,flexDirection: 'row'}} >
             <View>
-                <Text> Assignment {props.index+1} : {props.title} </Text>
-                <Text> Description: {props.description}</Text>
+                <View style={styles.rowHeader}>
+                    <Text style={styles.rowHeaderText}> Assignment {props.index+1} : {props.title} </Text>
+                </View>
+                <View style={styles.rowContent}>
+                    <Text style={styles.rowContentText}> Description: {props.description}</Text>
+                </View>
+
             </View>
             <TouchableOpacity onPress={onDelete} style={styles.trash}>
                 <Ionicons 
@@ -24,19 +30,7 @@ const Row = (props) => {
     
     
 }
-const styles = StyleSheet.create({
-    row: {
-        flex:1,
-        flexDirection: 'row',
-        marginTop: 5,
-        marginLeft: 5
-    },
-    trash: {
-        marginRight: 10,
-        marginLeft: 'auto',
-        marginTop: 10
-    }
-})
+  
 
 
 export default Row

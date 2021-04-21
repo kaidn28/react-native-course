@@ -28,7 +28,9 @@ function AssignmentsStackNavInit(props){
                                 style={{paddingRight: 10}}
                             />
                         </TouchableOpacity>),
-                    headerLeft: ()=> (<HeaderBackButton onPress={()=> props.navigation.navigate('Classes')}/>)
+                    headerLeft: ()=> (
+                        <HeaderBackButton onPress={()=> props.navigation.navigate('Classes')}/>),
+                    headerTitleAlign: 'center'
                 })}
             >
                 {() =>
@@ -39,7 +41,10 @@ function AssignmentsStackNavInit(props){
             </AssignmentsStackNav.Screen>
             <AssignmentsStackNav.Screen
                 name="Add"
-                options={{title:"Add Assignment"}}
+                options={{
+                    title:"Add Assignment",
+                    headerTitleAlign:'center'
+                }}
             >
             {
             ()=> <AddScreen 

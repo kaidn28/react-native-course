@@ -13,7 +13,10 @@ function StudentsStackNavInit(props){
         >
             <StudentsStackNav.Screen
                 name="Students"
-                options={{title:"Students"}}
+                options={{
+                    title: props.headerName,
+                    headerTitleAlign: 'center'
+                }}
             >
             {()=>
                 <ListScreen nass={props.nass}/>        
@@ -22,7 +25,7 @@ function StudentsStackNavInit(props){
             <StudentsStackNav.Screen
                 name="Details"
                 component={DetailsScreen}
-                options={{title:"Student Details"}}
+                options={({route})=> ({title: route.params.name.title +'. '+route.params.name.last})}
             />
         </StudentsStackNav.Navigator>
     )

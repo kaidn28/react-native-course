@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/core'
 import React from 'react'
-import {Text, Image, View, StyleSheet, TouchableOpacity} from 'react-native'
-
+import {Text, Image, View, TouchableOpacity} from 'react-native'
+import styles from '../../assets/styles'
 const Row = (props) => {
     const fullname = props.name.first + ' ' + props.name.last 
     //console.log(props.picture.thumbnail)
@@ -10,11 +10,15 @@ const Row = (props) => {
         navigation.navigate('Details', {...props})
     }
     return (
-        <TouchableOpacity style={styles.row} onPress={getStudentDetails}>
+        <TouchableOpacity style={styles.studentRow} onPress={getStudentDetails}>
             <Image source={{uri:props.picture.medium}} 
-            style={{width: 60, height: 60}}
+            style={styles.image}
             />
-            <View>
+            <View style={styles.rowContent}>
+                <View style={styles.rowHeader}>
+                    <Text> Information:</Text>
+                </View>
+
                 <Text> Name: {fullname} </Text>
                 <Text> ID: {props.id.name + props.id.value}</Text>
                 <Text> Average Score: {props.mean_score}</Text>
@@ -26,16 +30,5 @@ const Row = (props) => {
     
     
 }
-const styles = StyleSheet.create({
-    row: {
-        flex: 1,
-        flexDirection: 'row',
-        marginTop: 5,
-        marginLeft: 5
-    },
-    image: {
-    }
-})
-
 
 export default Row

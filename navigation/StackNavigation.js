@@ -19,7 +19,10 @@ function StackNavInit(){
                 <StackNav.Screen
                     name="Classes"
                     component={ClassesListScreen}
-                    options={{title: "Your Classes"}}
+                    options={{
+                        title: "Your Classes",
+                        headerTitleAlign: 'center'
+                    }}
                 />
                 <StackNav.Screen 
                     name="TabNav" 
@@ -29,7 +32,10 @@ function StackNavInit(){
                 <StackNav.Screen 
                     name="Details" 
                     component={DetailsScreen} 
-                    options={{ title: "Details" }}
+                    options={{ 
+                        title: "Details",
+                        headerTitleAlign: 'center' 
+                    }}
                 />
                 </>
             ) : (

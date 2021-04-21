@@ -1,8 +1,9 @@
 import axios from 'axios'
 import React from 'react'
-import { FlatList, Text } from 'react-native'
+import { FlatList, Text, View } from 'react-native'
 import store from '../../store/store'
 import Row from './Row'
+import styles from '../../assets/styles'
 class ClassesList extends React.Component {
     state = {
         classes: null
@@ -29,12 +30,16 @@ class ClassesList extends React.Component {
         //console.log(this.state.classes)
         return (
             this.state.classes !== null ?
-            <FlatList
+            <FlatList style={styles.list}
             data={this.state.classes}
             renderItem={obj => <Row {...obj.item} />}
             keyExtractor={(item, index) => item.id + index}
         />
-        : <Text> Loading...</Text>
+        : (
+            <View style={styles.loadingContainer}>
+                <Text style={styles.loadingText}> Loading...</Text>
+            </View>
+            )
         )
         
     }

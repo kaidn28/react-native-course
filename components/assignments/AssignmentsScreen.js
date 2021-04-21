@@ -2,6 +2,7 @@ import axios from 'axios'
 import React from 'react'
 import { FlatList, Text, View} from 'react-native'
 import Row from './Row'
+import styles from '../../assets/styles'
 class AssignmentsScreen extends React.Component{
     state = {
         assignments: null,
@@ -39,15 +40,22 @@ class AssignmentsScreen extends React.Component{
     render(){
         //console.log(this.state.classKey)
         //console.log(this.props.route.params)
-        return this.state.assignments !== null? 
-                <FlatList
+        return (
+            <View style = {styles.container}>
+
+                {this.state.assignments !== null? 
+                <FlatList style={styles.list}
                     data={this.state.assignments}
                     renderItem={({item,index}) => <Row {...item} index={index} onDelete={this.onDelete}/>}
                     keyExtractor={(item, index) => (index + item.title)}
                 />
-                : <Text> Loading...</Text>
+                : (
+                <View style={styles.loadingContainer}>
+                    <Text style={styles.loadingText}> Loading...</Text>
+                </View>)
+                }
+            </View>            
+            )
     }
-
 }
-
 export default AssignmentsScreen
